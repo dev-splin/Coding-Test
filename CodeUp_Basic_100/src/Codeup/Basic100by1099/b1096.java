@@ -40,6 +40,7 @@ public class b1096 {
 				goBoard[x-1][y-1] = 1;
 			}
 			
+			// 바둑판의 크기가 정해져 있기 때문에 19를 넣어줍니다.
 			for (int i = 0; i < 19; i++) {
 				for (int j = 0; j < 19; j++) {
 					bw.write(Integer.toString(goBoard[i][j]) + " ");
