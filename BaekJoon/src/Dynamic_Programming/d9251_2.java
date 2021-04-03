@@ -14,15 +14,13 @@ public class d9251_2 {
 			return 0;
 		
 		if(memo[n][m] == null) {
-			
-			int dpA = dp(n-1,m);
-			int dpB = dp(n,m-1);
-			int dpC = dp(n-1,m-1);
-			
+						
+			// 행과 열 즉, 문자들이 같으면 왼쪽 대각선을 참조한 값에 +1을 해줍니다.
 			if(a.charAt(n-1) == b.charAt(m-1))
-				++dpC;
-			
-			memo[n][m] = Math.max(dpA, Math.max(dpB, dpC));
+				memo[n][m] = dp(n-1,m-1) + 1;
+			// 문자들이 같지 않으면 왼쪽과 위쪽 중 최대값을 넣어줍니다.
+			else
+				memo[n][m] = Math.max(dp(n-1,m),dp(n,m-1));
 		}
 		
 		return memo[n][m];

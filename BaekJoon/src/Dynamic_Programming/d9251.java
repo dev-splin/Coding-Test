@@ -21,12 +21,14 @@ public class d9251 {
 
 			int memo[][] = new int[n+1][m+1];
 			
+			// [1][1]부터 하나씩 채워나갑니다.
 			for (int i = 1; i <= n; i++) {
 				
 				for (int j = 1; j <= m; j++) {
-					if(b.charAt(j-1) == a.charAt(i-1)) {
+					// 문자가 같게되면 대각선 왼쪽 값에서 +1
+					if(b.charAt(j-1) == a.charAt(i-1))
 						memo[i][j] = memo[i-1][j-1] + 1;
-					}
+					// 같지 않으면 행-1 과 열-1 즉, 위와 왼쪽 중 비교해 최대값을 구합니다.
 					else
 						memo[i][j] = Math.max(memo[i][j-1], memo[i-1][j]);
 				}
