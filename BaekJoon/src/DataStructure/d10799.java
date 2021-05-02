@@ -23,13 +23,14 @@ public class d10799 {
 				if(ch == '(')
 					stack.push(ch);
 				else if(ch == ')') {
-					
+					stack.pop();
+					// )를 만났을 때 전 문자가 (이면 레이저, 아니면 파이프가 끝난 것
+					// 레이저를 만났을 때 레이저의 위치에서의 쇠파이스 개수를 더하게 되므로, 파이프가 끝나면 별개로 개수를 더해주어야 합니다.
 					if(prevch == '(')
-						count += stack.size()-1;
+						count += stack.size();
 					else
 						++count; 
 					
-					stack.pop();
 				}
 				prevch = ch;
 			}
