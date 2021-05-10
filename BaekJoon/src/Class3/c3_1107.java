@@ -5,63 +5,46 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class c3_1107 {
-	static int nums[];
+	static boolean brokens[];
 	
 	public static int find(int findNum) {
 		if(findNum == 100)
 			return 0;
 		
-		int pushNum = 0;
+		int min = Math.abs(findNum - 100);
 		
-		int count = 0;
-		if(findNum == 0) {
-			pushNum = findNearNum(0);
-			++count;
-		} else {
-			int tmpFindNum = findNum;
+		for (int i = 0; i <= 1000000; i++) {
+			int push = Possible(i);
 			
-			while(tmpFindNum > 0) {
-				int mod = tmpFindNum % 10;
-				pushNum += (int)Math.pow(10, count) * findNearNum(mod);
-				
-				tmpFindNum /= 10;
-				++count;
+			if(push != -1) {
+				push += Math.abs(findNum - i);
+				min = Math.min(min, push);
 			}
 		}
-			
 		
-		count += Math.abs(findNum - pushNum);
-		
-		return count;
+		return min;
 	}
 	
-	public static int findNearNum(int num) {
+	public static int Possible(int num) {
+		if(num == 0)
+			if(brokens[num])
+				return -1;
+			else
+				return 1;
 		
-		if(nums[num] == 0)
-			return num;
+		int count = 0;
 		
-		int right = num;
-		int rightplus = 0;
-		
-		while(right < 9) {
-			++rightplus;
-			if(nums[++right] == 0)
-				break;
+		while(num > 0) {
+			int mod = num % 10;
+			
+			if(brokens[mod])
+				return -1;
+			
+			num /= 10;
+			++count;
 		}
 		
-		int left = num;
-		int leftplus = 0;
-		
-		while(left > 0) {
-			++leftplus;
-			if(nums[--left] == 0)
-				break;
-		}
-		
-		if(rightplus > leftplus)
-			return left;
-		else
-			return right;
+		return count;
 	}
 	
 	public static void main(String[] args) {
@@ -71,7 +54,7 @@ public class c3_1107 {
 		try {
 			int n = Integer.parseInt(br.readLine());
 			int m = Integer.parseInt(br.readLine());
-			nums = new int[10];
+			brokens = new boolean[10];
 			StringTokenizer stk = null;
 			
 			if(m != 0) {
@@ -79,7 +62,7 @@ public class c3_1107 {
 				
 				for (int i = 0; i < m; i++) {
 					int num = Integer.parseInt(stk.nextToken());
-					nums[num] = -1;
+					brokens[num] = true;
 				}
 			}
 			
