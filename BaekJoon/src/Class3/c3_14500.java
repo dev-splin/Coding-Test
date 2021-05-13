@@ -41,6 +41,7 @@ public class c3_14500 {
 		}
 	}
 	
+	// 'ㅗ', 'ㅜ', 'ㅓ', 'ㅏ' 모양을 구해줍니다.
 	public static void exception(int row, int col) {
 		
 		for (int i = 0; i < 4; i++) {
@@ -72,12 +73,14 @@ public class c3_14500 {
 			map = new int[n][m];
 			visit = new boolean[n][m];
 			
+			// 종이 만들기
 			for (int i = 0; i < n; i++) {
 				stk = new StringTokenizer(br.readLine());
 				for (int j = 0; j < m; j++)
 					map[i][j] = Integer.parseInt(stk.nextToken());
 			}
 			
+			// 종이의 모든 부분을 순회하면서 도형을 찾아 제일 최대 값이 나오는 경우를 찾습니다.
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < m; j++) {
 					visit[i][j] = true;
