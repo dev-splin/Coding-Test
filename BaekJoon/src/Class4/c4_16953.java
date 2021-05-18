@@ -26,10 +26,12 @@ public class c4_16953 {
 		BufferedReader br = new BufferedReader(isr);
 		
 		try {
+			// 입력 시작
 			StringTokenizer stk = new StringTokenizer(br.readLine());
 			
 			int a = Integer.parseInt(stk.nextToken());
 			int b = Integer.parseInt(stk.nextToken());
+			// 입력 끝
 			
 			Queue<Num> q = new LinkedList<>();
 			Set<Long> visit = new HashSet<>();
@@ -40,12 +42,14 @@ public class c4_16953 {
 			q.add(start);
 			
 			int ans = -1;
+			// Queue를 이용한 BFS
 			while(!q.isEmpty()) {
 				Num num = q.poll();
 				
 				if(num.num > MAX)
 					continue;
 				
+				// 큐에서 나온 객체의 num이 b와 같다면 루프 종료
 				if(num.num == b) {
 					ans = num.count;
 					break;
@@ -54,11 +58,11 @@ public class c4_16953 {
 				long one = num.num * 10 + 1;
 				long mul = num.num * 2;
 				
+				// 방문한 적이 없는 수만 넣어 줍니다.
 				if(!visit.contains(one)) {
 					visit.add(one);
 					q.add(new Num(one, num.count + 1));
 				}
-				
 				if(!visit.contains(mul)) {
 					visit.add(mul);
 					q.add(new Num(mul, num.count + 1));
