@@ -11,8 +11,10 @@ public class c4_1865 {
 		BufferedReader br = new BufferedReader(isr);
 		
 		try {
+			// 테스트 케이스 입력
 			int tc= Integer.parseInt(br.readLine());
 			
+			// 입력 시작
 			for (int i = 0; i < tc; i++) {
 				StringTokenizer stk = new StringTokenizer(br.readLine());
 				
@@ -22,11 +24,12 @@ public class c4_1865 {
 				
 				int arr[][] = new int[n+1][n+1];
 				
+				// 자기자신으로 돌아오는 경우도 구해야 하기 때문에 모두 INF로 초기화
 				for (int j = 1; j <= n; j++)
 					for (int k = 1; k <= n; k++)
 						arr[j][k] = INF;
 				
-				
+				// 도로
 				for (int j = 0; j < m; j++) {
 					stk = new StringTokenizer(br.readLine());
 					
@@ -34,6 +37,7 @@ public class c4_1865 {
 					int node2 = Integer.parseInt(stk.nextToken());
 					int time = Integer.parseInt(stk.nextToken());
 					
+					// 두 지점을 연결하는 도로가 두 개 이상일 수도 있기 때문에 시간이 작은 경우만 넣어줍니다.
 					if(arr[node1][node2] < time)
 						continue;
 					
@@ -41,6 +45,7 @@ public class c4_1865 {
 					arr[node2][node1] = time;
 				}
 				
+				// 웜홀은 시간이 줄어들기 때문에 -로 넣어줍니다.
 				for (int j = 0; j < w; j++) {
 					stk = new StringTokenizer(br.readLine());
 					
@@ -49,7 +54,9 @@ public class c4_1865 {
 					int time = Integer.parseInt(stk.nextToken());
 					arr[node1][node2] = -time;
 				}
+				// 입력 끝
 				
+				// 플로이드 와샬
 				for (int k = 1; k <= n; k++)
 					for (int j = 1; j <= n; j++)
 						for (int l = 1; l <= n; l++)
@@ -58,6 +65,7 @@ public class c4_1865 {
 				
 				boolean isPossible = false;
 				
+				// 자기자신으로 돌아가는 경우 중 0보다 작은 경우가 있으면 시간이 되돌아가 있는 경우
 				for (int j = 1; j <= n; j++)
 					if(arr[j][j] < 0)
 						isPossible = true;
