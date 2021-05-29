@@ -18,7 +18,7 @@ public class c4_1918 {
 			ArrayDeque<Character> stack = new ArrayDeque<>();
 			Map<Character, Integer> priority = new HashMap<>();
 			
-			// 우선순위 설정
+			// 우선순위 설정 (숫자가 높은 게 우선순위가 높은 것)
 			priority.put('(', 0);
 			priority.put('+', 1);
 			priority.put('-', 1);
