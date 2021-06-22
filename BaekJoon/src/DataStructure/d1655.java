@@ -20,12 +20,16 @@ public class d1655 {
 			for (int i = 0; i < n; i++) {
 				int num = Integer.parseInt(br.readLine());
 				
+				// 두 개의 큐의 크기가 같으면 maxPq에, 아니면 minPq에 값을 번갈아 넣습니다.
 				if(minPq.size() == maxPq.size())
 					maxPq.add(num);
 				else
 					minPq.add(num);
 				
+				// 맨 처음 minPq는 비어 있기 때문에 비어있는지 체크
 				if(!minPq.isEmpty()) {
+					// maxPq의 Head값은 minPq의 Head값보다 작아야 하기 때문에
+					// maxPq의 Head값이 더 크다면 서로 바꿔줍니다.
 					if(maxPq.peek() > minPq.peek()) {
 						int bigNum = maxPq.poll();
 						int smallNum = minPq.poll();
