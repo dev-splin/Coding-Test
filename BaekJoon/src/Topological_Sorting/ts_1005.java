@@ -10,16 +10,6 @@ import java.util.StringTokenizer;
 
 public class ts_1005 {
 	
-	public static class Building {
-		int num;
-		int time;
-		
-		public Building(int num, int time) {
-			this.num = num;
-			this.time = time;
-		}
-	}
-	
 	public static void main(String[] args) {
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
@@ -68,7 +58,7 @@ public class ts_1005 {
 				
 				// 건설할 수 있는(edges가 0인) 건물들을 넣을 큐
 				Queue<Integer> q = new LinkedList<>();
-				// 해당 인덱스의 건물을 건설하는데 까지 걸린 시간
+				// 해당 인덱스의 건물을 건설하는데 까지 걸린 시간을 저장
 				int arrivalTime[] = new int[n+1];
 				
 				// 해당 인덱스 건물의 건설시간을 미리 넣어주고, 처음에 건설할 수 있는(edges가 0인)건물을 큐에 넣음
