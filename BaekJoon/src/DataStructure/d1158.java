@@ -49,18 +49,12 @@ public class d1158 {
 					
 					if(count == k) {
 						sb.append(cur);
-						
-						if(checkNum.size() != 1)
-							sb.append(", ");
-						
 						count = 0;
 						checkNum.remove(cur);
+						sb.append(", ");
 					} else {
 						dstQ.add(cur);
 					}
-					
-					if(checkNum.size() == 1)
-						break;
 					
 					if(curQ.isEmpty()) {
 						
@@ -68,9 +62,13 @@ public class d1158 {
 						curQ = dstQ;
 						dstQ = tmpQ;
 					}
+					
+					if(checkNum.size() == 1)
+						break;
+					
 				}
 				
-				sb.append(dstQ.poll());
+				sb.append(curQ.poll());
 			}
 			
 			sb.append('>');
