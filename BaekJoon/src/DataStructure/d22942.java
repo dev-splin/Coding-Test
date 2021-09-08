@@ -17,6 +17,26 @@ public class d22942 {
 		}
 	}
 	
+	public static boolean solve(PriorityQueue<Circle> pq) {
+		Circle cur = pq.poll();
+		boolean isPossible = true;
+		
+		while(!pq.isEmpty()) {
+			Circle next = pq.peek();
+			
+			if(cur.r + next.r < Math.abs(next.x-cur.x) ||
+					Math.abs(next.x-cur.x) < Math.abs(next.r - cur.r)) {
+				cur = pq.poll();
+			}
+			else {
+				isPossible = false;
+				break;
+			}
+		}
+		
+		return isPossible;
+	}
+	
 	public static void main(String[] args) {
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
@@ -24,11 +44,9 @@ public class d22942 {
 		try {
 			int n = Integer.parseInt(br.readLine());
 			
-			PriorityQueue<Circle> pq = new PriorityQueue<>((a,b)-> {
-				if(a.r == b.r)
-					return b.x - a.x;
-				return b.r - a.r;
-			});
+			PriorityQueue<Circle> pq = new PriorityQueue<>((a,b)-> a.x-b.x);
+			
+			PriorityQueue<Circle> rpq = new PriorityQueue<>((a,b)-> a.r-b.r);
 			
 			StringTokenizer stk;
 			
@@ -38,28 +56,14 @@ public class d22942 {
 				int x = Integer.parseInt(stk.nextToken());
 				int r = Integer.parseInt(stk.nextToken());
 				
-				Circle circle = new Circle(x, r);
-				
-				pq.add(circle);
+				pq.add(new Circle(x, r));
+				rpq.add(new Circle(x, r));
 			}
 			
-			Circle cur = pq.poll();
-			boolean isPossible = true;
+			boolean isPossible1 = solve(pq);
+			boolean isPossible2 = solve(rpq);
 			
-			while(!pq.isEmpty()) {
-				Circle next = pq.peek();
-				
-				if(cur.r + next.r < Math.abs(next.x-cur.x) ||
-						Math.abs(next.x-cur.x) < Math.abs(next.r - cur.r)) {
-					cur = pq.poll();
-				}
-				else {
-					isPossible = false;
-					break;
-				}
-			}
-			
-			if(isPossible)
+			if(isPossible1 && isPossible2)
 				System.out.println("YES");
 			else
 				System.out.println("NO");
