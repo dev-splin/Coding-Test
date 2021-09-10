@@ -6,7 +6,6 @@ import java.util.TreeMap;
 
 public class d4358 {
 	
-	
 	public static void main(String[] args) {
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
@@ -27,7 +26,11 @@ public class d4358 {
 				str = br.readLine();
 			}
 			
-			StringBuilder sb = new StringBuilder();
+			for(String key : treeMap.keySet()) {
+				float num = ((float)treeMap.get(key) / (float)count) * 100;
+				System.out.printf("%s %.4f\n", key, num);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
