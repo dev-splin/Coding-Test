@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.StringTokenizer;
 
-public class q18258 {
+public class d18258 {
 	
 	
 	public static void main(String[] args) {
