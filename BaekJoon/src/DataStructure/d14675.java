@@ -7,15 +7,6 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class d14675 {
-    static ArrayList<Integer> parents[];
-    static ArrayList<Integer> childs[];
-    static HashMap<Integer, int[]> map;
-
-    public static String solve(int t, int k) {
-
-        if(t == 1)
-    }
-
     public static void main(String[] args) {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
@@ -23,29 +14,18 @@ public class d14675 {
         try {
             int n = Integer.parseInt(br.readLine());
 
-            parents = new ArrayList[n+1];
-            childs = new ArrayList[n+1];
-            map = new HashMap<>();
-
-            for (int i = 1; i <= n; i++) {
-                parents[i] = new ArrayList<>();
-                childs[i] = new ArrayList<>();
-            }
+            int adjacents[] = new int[n+1];
 
             StringTokenizer stk;
 
-            for (int i = 1; i <= n; i++) {
+            for (int i = 1; i <= n-1; i++) {
                 stk = new StringTokenizer(br.readLine());
 
                 int a = Integer.parseInt(stk.nextToken());
                 int b = Integer.parseInt(stk.nextToken());
 
-                int arr[] = {a, b};
-
-                map.put(i, arr);
-
-                childs[a].add(b);
-                parents[b].add(a);
+                ++adjacents[a];
+                ++adjacents[b];
             }
 
             StringBuilder sb = new StringBuilder();
@@ -57,7 +37,14 @@ public class d14675 {
 
                 int t = Integer.parseInt(stk.nextToken());
                 int k = Integer.parseInt(stk.nextToken());
+
+                if(t == 1 && adjacents[k] == 1)
+                    sb.append("no").append('\n');
+                else
+                    sb.append("yes").append('\n');
             }
+
+            System.out.println(sb.toString());
 
         } catch (Exception e) {
             e.printStackTrace();
