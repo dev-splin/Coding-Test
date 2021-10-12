@@ -10,6 +10,27 @@ public class g14916 {
 		
 		try {
 			
+			int n = Integer.parseInt(br.readLine());
+			
+			int twoCoin = 0;
+			int fiveCoin = 0;
+			
+			while(n > 0) {
+				if(n % 5 == 0) {
+					fiveCoin = n / 5;
+					n = 0;
+				}
+				else {
+					n -= 2;
+					++twoCoin;
+				}
+			}
+			
+			if(n < 0)
+				System.out.println(-1);
+			else
+				System.out.println(twoCoin + fiveCoin);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
