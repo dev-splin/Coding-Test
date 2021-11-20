@@ -22,17 +22,24 @@ public class sol1 {
 			int rp = Integer.parseInt(stk.nextToken());
 			int cp = Integer.parseInt(stk.nextToken());
 			
-			boolean isPossible = false;
+			int totalCount = rp * cp;
 			
-			for (int i = 0; i < r; i++) {
+			for (int i = 1; i <= r; i++) {
 				String str = br.readLine();
 				
-				if(str.contains("P") && str.contains("G"))
-					isPossible = true;
+				for (int j = 1; j <= c; j++) {
+					char ch = str.charAt(j-1);
+					
+					if(ch == 'P') {
+						--totalCount;
+					}
+				}
 			}
 			
-			System.err.println(isPossible ? 1 : 0);
-			
+			if(totalCount == 0)
+				System.out.println(0);
+			else
+				System.out.println(1);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
