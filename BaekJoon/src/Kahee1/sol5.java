@@ -58,7 +58,7 @@ public class sol5 {
 					cmd = stk.nextToken();
 					
 					if(cmd.equals("acquire")) {
-						num = num == 0 ? Integer.parseInt(stk.nextToken()) : num;
+						num = Integer.parseInt(stk.nextToken());
 						
 						if(set.contains(num))
 							cmdQ[idx].add(new Command(num, id));
@@ -77,7 +77,7 @@ public class sol5 {
 					num = c.num;
 					
 					if(!set.contains(num)) {
-						set.remove(num);
+						set.add(num);
 						cmdQ[idx].poll();
 					}
 				}
